@@ -13,6 +13,7 @@ namespace ChainFilters.Model
     {
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => {};
 
+        public int Id { get; set; }
         public string NumberOrder { get; set; }
         public DateTime OrderDate { get; set; }
         public string Customer { get; set; }
