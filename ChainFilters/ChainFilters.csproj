@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -85,6 +86,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\DeligateCommand.cs" />
     <Compile Include="Model\Customer.cs" />
     <Compile Include="Model\DataBase\CustomerRepositoryInternal.cs" />
     <Compile Include="Model\DataBase\ICustomerRepository.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Services\OrderFilter.cs" />
     <Compile Include="Services\RepositoryFactory.cs" />
     <Compile Include="Services\InternalRepositoryFactory.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

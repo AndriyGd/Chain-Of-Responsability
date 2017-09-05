@@ -7,7 +7,7 @@
         xmlns:clr="clr-namespace:System;assembly=System"
         xmlns:xc="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <Style TargetType="StackPanel">
@@ -26,7 +26,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         
-        <WrapPanel>
+        <WrapPanel Margin="0 0 0 5">
             <StackPanel>
                 <TextBlock Text="Date from"/>
                 <DatePicker/>
@@ -48,5 +48,9 @@
                              ValueMemberPath="Status"/>
             </StackPanel>
         </WrapPanel>
+        
+        <DataGrid Grid.Row="1">
+            
+        </DataGrid>
     </Grid>
 </Window>

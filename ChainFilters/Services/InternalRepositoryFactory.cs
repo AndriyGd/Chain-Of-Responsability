@@ -7,6 +7,9 @@ using ChainFilters.Model.DataBase;
 
 namespace ChainFilters.Services
 {
+    /// <summary>
+    /// Specific factory 
+    /// </summary>
     internal class InternalRepositoryFactory : IRepositoryFactory
     {
         private static InternalRepositoryFactory _factory;
