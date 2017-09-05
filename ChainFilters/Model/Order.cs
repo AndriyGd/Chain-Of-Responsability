@@ -16,7 +16,7 @@ namespace ChainFilters.Model
         public int Id { get; set; }
         public string NumberOrder { get; set; }
         public DateTime OrderDate { get; set; }
-        public string Customer { get; set; }
+        public Customer Customer { get; set; }
         public byte OrderStatus { get; set; }
     }
 }

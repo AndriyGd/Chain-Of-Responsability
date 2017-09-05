@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChainFilters.Services;
 
 namespace ChainFilters.Model.DataBase
 {
@@ -22,7 +23,6 @@ namespace ChainFilters.Model.DataBase
                 var rn3 = new Random();
                 var rn4= new Random();
                 var rn5 = new Random();
-                var customers = new [] {"Sigma", "Liskon", "ComDir", "Colm", "RegL", "HotK", "Mob", "ZenDef", "RopJ", "Lopper", "Osran", "Iwee", "Hamony"};
                
                 var orders = new List<Order>();
 
@@ -31,7 +31,7 @@ namespace ChainFilters.Model.DataBase
                     orders.Add(new Order
                     {
                         Id = i + 1,
-                        Customer = customers[rn.Next(customers.Length)],
+                        Customer = FactoryRepositoryFactory.GetFactory().CustomerRepository.Customers[rn.Next(FactoryRepositoryFactory.GetFactory().CustomerRepository.Customers.Count)],
                         NumberOrder = $"A0{rn2.Next()}",
                         OrderDate = new DateTime(2017, rn3.Next(13), rn4.Next(31)),
                         OrderStatus = (byte)rn5.Next(6)                      

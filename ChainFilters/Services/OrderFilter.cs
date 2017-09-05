@@ -104,7 +104,7 @@ namespace ChainFilters.Services
                         {
                             Thread.Sleep(1000);
 
-                            var ords = from or in orders where or.Customer.Equals(customer) select or;
+                            var ords = from or in orders where or.Customer.CompanyName.Equals(customer) select or;
                             ordersWithCustomers.AddRange(ords);
                         }
 
