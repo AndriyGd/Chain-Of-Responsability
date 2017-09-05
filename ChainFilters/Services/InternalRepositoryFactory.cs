@@ -14,6 +14,8 @@ namespace ChainFilters.Services
 
         private OrderRepositoryInternal _orderRepository;
         private CustomerRepositoryInternal _customerRepository;
+        private OrderStatusItemRepositoryInternal _orderStatusItemRepository;
+
         public static InternalRepositoryFactory Factory
         {
             get
@@ -32,5 +34,8 @@ namespace ChainFilters.Services
 
         public ICustomerRepository CustomerRepository
             => _customerRepository ?? (_customerRepository = new CustomerRepositoryInternal());
+
+        public IOrderStatusItemRepository OrderStatusItemRepository
+            => _orderStatusItemRepository ?? (_orderStatusItemRepository = new OrderStatusItemRepositoryInternal());
     }
 }

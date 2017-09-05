@@ -11,5 +11,6 @@ namespace ChainFilters.Services
     {
         IOrderRepository OrderRepository { get; }
         ICustomerRepository CustomerRepository { get; }
+        IOrderStatusItemRepository OrderStatusItemRepository { get; }
     }
 }

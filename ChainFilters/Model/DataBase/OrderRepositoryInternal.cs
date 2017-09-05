@@ -34,7 +34,7 @@ namespace ChainFilters.Model.DataBase
                         Customer = FactoryRepositoryFactory.GetFactory().CustomerRepository.Customers[rn.Next(FactoryRepositoryFactory.GetFactory().CustomerRepository.Customers.Count)],
                         NumberOrder = $"A0{rn2.Next()}",
                         OrderDate = new DateTime(2017, rn3.Next(13), rn4.Next(31)),
-                        OrderStatus = (byte)rn5.Next(6)                      
+                        OrderStatus = FactoryRepositoryFactory.GetFactory().OrderStatusItemRepository.OrderStatusItems[rn5.Next(FactoryRepositoryFactory.GetFactory().OrderStatusItemRepository.OrderStatusItems.Count)].Status                     
                     });
                 }
 

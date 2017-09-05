@@ -4,9 +4,49 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChainFilters"
+        xmlns:clr="clr-namespace:System;assembly=System"
+        xmlns:xc="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+    
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="0 0 5 0"/>
+        </Style>
+        <Style TargetType="xc:CheckComboBox">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         
+        <WrapPanel>
+            <StackPanel>
+                <TextBlock Text="Date from"/>
+                <DatePicker/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Date to"/>
+                <DatePicker/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Customer"/>
+                <xc:CheckComboBox IsEditable="False"
+                             DisplayMemberPath="CompanyName"
+                             ValueMemberPath="CompanyName"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Text="Order status"/>
+                <xc:CheckComboBox IsEditable="False"
+                             DisplayMemberPath="Text"
+                             ValueMemberPath="Status"/>
+            </StackPanel>
+        </WrapPanel>
     </Grid>
 </Window>
