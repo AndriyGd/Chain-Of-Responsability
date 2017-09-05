@@ -22,7 +22,7 @@ namespace ChainFilters.Model.DataBase
                 var rn3 = new Random();
                 var rn4= new Random();
                 var rn5 = new Random();
-                var customers = new [] {"Smiga", "Liskon", "ComDir", "Colm", "RegL", "HotK", "Mob", "ZenDef", "RopJ", "Lopper", "Osran", "Iwee", "Hamony"};
+                var customers = new [] {"Sigma", "Liskon", "ComDir", "Colm", "RegL", "HotK", "Mob", "ZenDef", "RopJ", "Lopper", "Osran", "Iwee", "Hamony"};
                
                 var orders = new List<Order>();
 

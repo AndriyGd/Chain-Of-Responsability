@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace ChainFilters.Services
 {
     using Model.DataBase;
-    public interface IOrderRepositoryFactory
+    public interface IRepositoryFactory
     {
-        IOrderRepository Repository { get; }
+        IOrderRepository OrderRepository { get; }
+        ICustomerRepository CustomerRepository { get; }
     }
 }

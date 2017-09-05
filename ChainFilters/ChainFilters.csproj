@@ -61,9 +61,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\DataBase\CustomerRepositoryInternal.cs" />
+    <Compile Include="Model\DataBase\ICustomerRepository.cs" />
+    <Compile Include="Services\FactoryRepositoryFactory.cs" />
     <Compile Include="Services\OrderFilter.cs" />
-    <Compile Include="Services\OrderRepositoryFactory.cs" />
-    <Compile Include="Services\OrderRepositoryInternalFactory.cs" />
+    <Compile Include="Services\RepositoryFactory.cs" />
+    <Compile Include="Services\InternalRepositoryFactory.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
