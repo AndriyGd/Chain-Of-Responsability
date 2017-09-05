@@ -11,7 +11,7 @@ namespace ChainFilters.Model.DataBase
     {
         private  List<Order> _orders;
 
-        public List<Order> Orders => _orders ?? (_orders = GetOrders(100));
+        public List<Order> Orders => _orders ?? (_orders = GetOrders(600));
 
 
         private static List<Order> GetOrders(int countOrders)
