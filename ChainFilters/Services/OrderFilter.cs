@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using ChainFilters.Factories;
 using ChainFilters.Model;
 
 namespace ChainFilters.Services

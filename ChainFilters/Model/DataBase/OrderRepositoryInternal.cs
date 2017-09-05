@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChainFilters.Factories;
 using ChainFilters.Services;
 
 namespace ChainFilters.Model.DataBase

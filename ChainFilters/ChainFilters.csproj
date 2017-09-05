@@ -93,10 +93,10 @@
     <Compile Include="Model\DataBase\IOrderStatusItemRepository.cs" />
     <Compile Include="Model\DataBase\OrderStatusItemRepositoryInternal.cs" />
     <Compile Include="Model\OrderStatusItem.cs" />
-    <Compile Include="Services\FactoryRepositoryFactory.cs" />
+    <Compile Include="Factories\FactoryRepositoryFactory.cs" />
     <Compile Include="Services\OrderFilter.cs" />
-    <Compile Include="Services\RepositoryFactory.cs" />
-    <Compile Include="Services\InternalRepositoryFactory.cs" />
+    <Compile Include="Factories\RepositoryFactory.cs" />
+    <Compile Include="Factories\InternalRepositoryFactory.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

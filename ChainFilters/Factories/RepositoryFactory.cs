@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ChainFilters.Model.DataBase;
 
-namespace ChainFilters.Services
+namespace ChainFilters.Factories
 {
-    using Model.DataBase;
-
     /// <summary>
     /// Abstract factory
     /// </summary>
     public interface IRepositoryFactory
     {
-        IOrderRepository OrderRepository { get; }
         ICustomerRepository CustomerRepository { get; }
+        IOrderRepository OrderRepository { get; }
         IOrderStatusItemRepository OrderStatusItemRepository { get; }
     }
 }
