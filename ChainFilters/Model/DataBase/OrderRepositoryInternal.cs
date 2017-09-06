@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using ChainFilters.Factories;
 using ChainFilters.Services;
@@ -12,7 +14,7 @@ namespace ChainFilters.Model.DataBase
     {
         private  List<Order> _orders;
 
-        public List<Order> Orders => _orders ?? (_orders = GetOrders(600));
+        public List<Order> Orders => _orders ?? (_orders = GetOrders(800));
 
 
         private static List<Order> GetOrders(int countOrders)
@@ -29,14 +31,21 @@ namespace ChainFilters.Model.DataBase
 
                 for (var i = 0; i < countOrders; i++)
                 {
-                    orders.Add(new Order
+                    Thread.Sleep(10);
+                    var order = new Order
                     {
                         Id = i + 1,
-                        Customer = FactoryRepositoryFactory.GetFactory().CustomerRepository.Customers[rn.Next(FactoryRepositoryFactory.GetFactory().CustomerRepository.Customers.Count)],
+                        Customer = FactoryRepositoryFactory.GetFactory().CustomerRepository.Customers[
+                            rn.Next(FactoryRepositoryFactory.GetFactory().CustomerRepository.Customers.Count)],
                         NumberOrder = $"A0{rn2.Next()}",
                         OrderDate = new DateTime(2017, rn3.Next(1, 12), rn4.Next(1, 31)),
-                        OrderStatus = FactoryRepositoryFactory.GetFactory().OrderStatusItemRepository.OrderStatusItems[rn5.Next(FactoryRepositoryFactory.GetFactory().OrderStatusItemRepository.OrderStatusItems.Count)].Status                     
-                    });
+                        OrderStatus = FactoryRepositoryFactory.GetFactory().OrderStatusItemRepository.OrderStatusItems[
+                                rn5.Next(
+                                    FactoryRepositoryFactory.GetFactory()
+                                        .OrderStatusItemRepository.OrderStatusItems.Count)]
+                            .Status
+                    };
+                    orders.Add(order);
                 }
 
                 return orders;

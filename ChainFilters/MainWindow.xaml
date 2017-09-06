@@ -7,7 +7,7 @@
         xmlns:clr="clr-namespace:System;assembly=System"
         xmlns:xc="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="350" Width="725" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <Style TargetType="StackPanel">
@@ -58,7 +58,7 @@
                   AlternatingRowBackground="WhiteSmoke" GridLinesVisibility="Vertical">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Number order" Binding="{Binding NumberOrder}"/>
-                <DataGridTextColumn Header="Order date" Binding="{Binding OrderDate}"/>
+                <DataGridTextColumn Header="Order date" Binding="{Binding OrderDate, StringFormat={}{0:dd.MM.yyyy}}"/>
                 <DataGridTextColumn Header="Customer" Binding="{Binding Customer.CompanyName}"/>
                 <DataGridTextColumn Header="Order status" Binding="{Binding OrderStatus}"/>
             </DataGrid.Columns>

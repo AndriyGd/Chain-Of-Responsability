@@ -50,7 +50,6 @@ namespace ChainFilters.ViewModel
                 progress = new ProgressTask();
                 progress.Show();
                 Orders.Clear();
-                _orderFilter.Dispose();
                 List<byte> statuses = null;
                 if (!string.IsNullOrEmpty(SelectedStatusItems))
                 {
@@ -73,6 +72,7 @@ namespace ChainFilters.ViewModel
                 }
 
                 var orders = await _orderFilter.GetOrdersAsync(DateFrom, DateTo);
+                _orderFilter.Dispose();
 
                 orders.ForEach(or => Orders.Add(or));
                 progress?.Close();
