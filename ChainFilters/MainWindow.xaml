@@ -29,28 +29,39 @@
         <WrapPanel Margin="0 0 0 5">
             <StackPanel>
                 <TextBlock Text="Date from"/>
-                <DatePicker/>
+                <DatePicker SelectedDate="{Binding DateFrom, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Date to"/>
-                <DatePicker/>
+                <DatePicker SelectedDate="{Binding DateTo, UpdateSourceTrigger=PropertyChanged}"/>
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Customer"/>
                 <xc:CheckComboBox IsEditable="False"
+                                  ItemsSource="{Binding Customers}"
                              DisplayMemberPath="CompanyName"
-                             ValueMemberPath="CompanyName"/>
+                             ValueMemberPath="CompanyName"
+                                  SelectedValue="{Binding SelectedCustomers, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel>
                 <TextBlock Text="Order status"/>
                 <xc:CheckComboBox IsEditable="False"
+                                  ItemsSource="{Binding OrderStatusItems}"
                              DisplayMemberPath="Text"
-                             ValueMemberPath="Status"/>
+                             ValueMemberPath="Status"
+                                  SelectedValue="{Binding SelectedStatusItems, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
+            <Button Content="Show order" Command="{Binding SelectedItemCommand}" VerticalAlignment="Bottom"/>
         </WrapPanel>
         
-        <DataGrid Grid.Row="1">
-            
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Orders}" AutoGenerateColumns="False" CanUserAddRows="False" 
+                  AlternatingRowBackground="WhiteSmoke" GridLinesVisibility="Vertical">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Number order" Binding="{Binding NumberOrder}"/>
+                <DataGridTextColumn Header="Order date" Binding="{Binding OrderDate}"/>
+                <DataGridTextColumn Header="Customer" Binding="{Binding Customer.CompanyName}"/>
+                <DataGridTextColumn Header="Order status" Binding="{Binding OrderStatus}"/>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>

@@ -10,22 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ChainFilters
 {
-    using ViewModel;
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ProgressTask.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ProgressTask : Window
     {
-        public MainWindow()
+        public ProgressTask()
         {
             InitializeComponent();
 
-            var mainWindowViewModel = new MainWindowViewModel(this);
+            ProgressBarTask.IsIndeterminate = true;
         }
     }
 }

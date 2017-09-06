@@ -43,7 +43,6 @@ namespace ChainFilters.Services
             var orders = new List<Order>();
             await Task.Run(() =>
             {
-                Dispose();
                 DtFrom = dtFrom;
                 DtTo = dtTo;
 
@@ -77,8 +76,11 @@ namespace ChainFilters.Services
             {
                 // get all orders by OrderDate
                 if (orderFilter.Customers.Count == 0 && orderFilter.OrderStatuses.Count == 0)
-                {                   
+                {
                     orders.AddRange(orderFilter.GetDefaultOrders());
+                }
+                else
+                {
                     base.SelectOrders(orderFilter, ref orders);
                 }
             }
@@ -90,30 +92,45 @@ namespace ChainFilters.Services
 
             public override void SelectOrders(OrderFilter orderFilter, ref List<Order> orders)
             {
-                // if orders.count == 0 get all orders by OrderDate
                 if (orders.Count == 0)
                 {
-                    orders.AddRange(orderFilter.GetDefaultOrders());
+                    // if orderFilter.Customers.Count == 0 get all orders by OrderDate
+                    if (orderFilter.Customers.Count == 0)
+                    {
+                        orders.AddRange(orderFilter.GetDefaultOrders());
+                    }
+                    else
+                    {
+                        orders = GetOrdersByCustomer(orderFilter, FactoryRepositoryFactory.GetFactory().OrderRepository.Orders);
+                    }
                 }
                 else
                 {
                     // if Customers.Count == 0 skip select orders. Filter is disabled.
                     if (orderFilter.Customers.Count != 0)
                     {
-                        var ordersWithCustomers = new List<Order>();
-                        foreach (var customer in orderFilter.Customers)
-                        {
-                            Thread.Sleep(1000);
-
-                            var ords = from or in orders where or.Customer.CompanyName.Equals(customer) select or;
-                            ordersWithCustomers.AddRange(ords);
-                        }
-
-                        orders = new List<Order>(ordersWithCustomers);
+                        orders = GetOrdersByCustomer(orderFilter, orders);
                     }                    
                 }
 
                 base.SelectOrders(orderFilter, ref orders);
+            }
+
+            private static List<Order> GetOrdersByCustomer(OrderFilter orderFilter, IReadOnlyCollection<Order> source)
+            {
+                var ordersWithCustomers = new List<Order>();
+                foreach (var customer in orderFilter.Customers)
+                {
+                    Thread.Sleep(1000);
+
+                    var ords = from or in source
+                        where or.Customer.CompanyName.Equals(customer)
+                        select or;
+                    ordersWithCustomers.AddRange(ords);
+                }
+
+                var orders = new List<Order>(ordersWithCustomers);
+                return orders;
             }
         }
 
