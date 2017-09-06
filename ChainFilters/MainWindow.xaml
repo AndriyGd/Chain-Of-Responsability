@@ -7,7 +7,7 @@
         xmlns:clr="clr-namespace:System;assembly=System"
         xmlns:xc="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="725" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="550" Width="825" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <Style TargetType="StackPanel">
@@ -44,10 +44,18 @@
                                   SelectedValue="{Binding SelectedCustomers, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel>
+                <TextBlock Text="City"/>
+                <xc:CheckComboBox IsEditable="False"
+                                  ItemsSource="{Binding Cities}"
+                             DisplayMemberPath="Name"
+                             ValueMemberPath="Name"
+                                  SelectedValue="{Binding SelectedCities, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+            <StackPanel>
                 <TextBlock Text="Order status"/>
                 <xc:CheckComboBox IsEditable="False"
                                   ItemsSource="{Binding OrderStatusItems}"
-                             DisplayMemberPath="Text"
+                             DisplayMemberPath="Name"
                              ValueMemberPath="Status"
                                   SelectedValue="{Binding SelectedStatusItems, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
@@ -60,7 +68,8 @@
                 <DataGridTextColumn Header="Number order" Binding="{Binding NumberOrder}"/>
                 <DataGridTextColumn Header="Order date" Binding="{Binding OrderDate, StringFormat={}{0:dd.MM.yyyy}}"/>
                 <DataGridTextColumn Header="Customer" Binding="{Binding Customer.CompanyName}"/>
-                <DataGridTextColumn Header="Order status" Binding="{Binding OrderStatus}"/>
+                <DataGridTextColumn Header="City" Binding="{Binding City.Name}"/>
+                <DataGridTextColumn Header="Order status" Binding="{Binding OrderStatus.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

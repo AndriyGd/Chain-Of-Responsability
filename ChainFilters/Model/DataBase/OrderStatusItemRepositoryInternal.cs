@@ -16,11 +16,11 @@ namespace ChainFilters.Model.DataBase
         {
             var items = new List<OrderStatusItem>
             {
-                new OrderStatusItem {Status = 0, Text = "Paid"},
-                new OrderStatusItem {Status = 1, Text = "Reservation"},
-                new OrderStatusItem {Status = 2, Text = "Credit"},
-                new OrderStatusItem {Status = 3, Text = "Processing"},
-                new OrderStatusItem {Status = 4, Text = "Returned"},
+                new OrderStatusItem {Status = 0, Name = "Paid"},
+                new OrderStatusItem {Status = 1, Name = "Reservation"},
+                new OrderStatusItem {Status = 2, Name = "Credit"},
+                new OrderStatusItem {Status = 3, Name = "Processing"},
+                new OrderStatusItem {Status = 4, Name = "Returned"},
             };
 
             return items;

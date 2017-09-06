@@ -11,6 +11,7 @@ namespace ChainFilters.Factories
         private static readonly object Locker = new object();
 
         private CustomerRepositoryInternal _customerRepository;
+        private CityRepositoryInternal _cityRepository;
         private OrderRepositoryInternal _orderRepository;
         private OrderStatusItemRepositoryInternal _orderStatusItemRepository;
 
@@ -29,6 +30,8 @@ namespace ChainFilters.Factories
 
         public ICustomerRepository CustomerRepository
             => _customerRepository ?? (_customerRepository = new CustomerRepositoryInternal());
+
+        public ICityRepository CityRepository => _cityRepository ?? (_cityRepository = new CityRepositoryInternal());
 
         public IOrderRepository OrderRepository
             => _orderRepository ?? (_orderRepository = new OrderRepositoryInternal());

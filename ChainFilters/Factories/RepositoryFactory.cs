@@ -8,6 +8,7 @@ namespace ChainFilters.Factories
     public interface IRepositoryFactory
     {
         ICustomerRepository CustomerRepository { get; }
+        ICityRepository CityRepository { get; }
         IOrderRepository OrderRepository { get; }
         IOrderStatusItemRepository OrderStatusItemRepository { get; }
     }

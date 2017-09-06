@@ -26,7 +26,7 @@ namespace ChainFilters.Model.DataBase
                 var rn3 = new Random();
                 var rn4= new Random();
                 var rn5 = new Random();
-               
+                var rn6 = new Random();
                 var orders = new List<Order>();
 
                 for (var i = 0; i < countOrders; i++)
@@ -42,8 +42,8 @@ namespace ChainFilters.Model.DataBase
                         OrderStatus = FactoryRepositoryFactory.GetFactory().OrderStatusItemRepository.OrderStatusItems[
                                 rn5.Next(
                                     FactoryRepositoryFactory.GetFactory()
-                                        .OrderStatusItemRepository.OrderStatusItems.Count)]
-                            .Status
+                                        .OrderStatusItemRepository.OrderStatusItems.Count)],
+                        City = FactoryRepositoryFactory.GetFactory().CityRepository.Cities[rn6.Next(FactoryRepositoryFactory.GetFactory().CityRepository.Cities.Count)]
                     };
                     orders.Add(order);
                 }

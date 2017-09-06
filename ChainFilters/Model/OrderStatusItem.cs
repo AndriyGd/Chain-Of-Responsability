@@ -8,7 +8,7 @@ namespace ChainFilters.Model
 {
     public class OrderStatusItem
     {
-        public string Text { get; set; }
+        public string Name { get; set; }
         public byte Status { get; set; }
     }
 }

@@ -87,8 +87,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\DeligateCommand.cs" />
+    <Compile Include="Model\City.cs" />
     <Compile Include="Model\Customer.cs" />
+    <Compile Include="Model\DataBase\CityRepositoryInternal.cs" />
     <Compile Include="Model\DataBase\CustomerRepositoryInternal.cs" />
+    <Compile Include="Model\DataBase\ICityRepository.cs" />
     <Compile Include="Model\DataBase\ICustomerRepository.cs" />
     <Compile Include="Model\DataBase\IOrderStatusItemRepository.cs" />
     <Compile Include="Model\DataBase\OrderStatusItemRepositoryInternal.cs" />

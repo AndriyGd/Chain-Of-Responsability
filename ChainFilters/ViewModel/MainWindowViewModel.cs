@@ -22,8 +22,10 @@ namespace ChainFilters.ViewModel
         public DateTime DateTo { get; set; }
         public List<Customer> Customers { get; set; }
         public List<OrderStatusItem> OrderStatusItems { get; set; }
+        public List<City> Cities { get; set; }
         public string SelectedStatusItems { get; set; }
         public string SelectedCustomers { get; set; }
+        public string SelectedCities { get; set; }
         public BindingList<Order> Orders { get; set; }
         public ICommand SelectedItemCommand { get; set; }
 
@@ -36,7 +38,7 @@ namespace ChainFilters.ViewModel
             Orders = new BindingList<Order>();
             OrderStatusItems = FactoryRepositoryFactory.GetFactory().OrderStatusItemRepository.OrderStatusItems;
             Customers = FactoryRepositoryFactory.GetFactory().CustomerRepository.Customers;
-
+            Cities = FactoryRepositoryFactory.GetFactory().CityRepository.Cities;
             SelectedItemCommand = new DeligateCommand(OnSelectedItem, p => OrderStatusItems.Count > 0 && Customers.Count > 0);
 
             element.DataContext = this;
