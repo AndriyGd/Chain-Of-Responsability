@@ -53,20 +53,31 @@ namespace ChainFilters.ViewModel
                 progress.Show();
                 Orders.Clear();
                 List<byte> statuses = null;
+                string[] customers = null;
+                string[] cities = null;
+
                 if (!string.IsNullOrEmpty(SelectedStatusItems))
                 {
                     statuses = SelectedStatusItems.Split(',').ToList().Select(st => Convert.ToByte(st)).ToList();
                 }
-                string[] customers = null;
 
                 if (!string.IsNullOrEmpty(SelectedCustomers))
                 {
                     customers = SelectedCustomers.Split(',');
                 }
 
+                if (!string.IsNullOrEmpty(SelectedCities))
+                {
+                    cities = SelectedCities.Split(',');
+                }
+
                 if (customers != null && customers.Length > 0 && customers.Length < Customers.Count)
                 {
                     _orderFilter.Customers.AddRange(customers);
+                }
+                if (cities != null && cities.Length > 0 && cities.Length < Cities.Count)
+                {
+                    _orderFilter.Cities.AddRange(cities);
                 }
                 if (statuses != null && statuses.Count > 0 && statuses.Count < OrderStatusItems.Count)
                 {

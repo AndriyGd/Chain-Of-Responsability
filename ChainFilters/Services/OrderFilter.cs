@@ -24,16 +24,19 @@ namespace ChainFilters.Services
 
         #region public fields
         public List<string> Customers { get; }
+        public List<string> Cities { get; set; }
         public List<byte> OrderStatuses { get; }
         #endregion
 
         public OrderFilter()
         {
             Customers = new List<string>();
+            Cities = new List<string>();
             OrderStatuses = new List<byte>();
 
             _orderSelectors = new Stack<OrderSelector>();
             _orderSelectors.Push(new OrderSelectorByStatus(null));
+            _orderSelectors.Push(new OrderSelectorByCity(_orderSelectors.Peek()));
             _orderSelectors.Push(new OrderSelectorByCustomer(_orderSelectors.Peek()));
             _orderSelectors.Push(new OrederSelectorByOrderDate(_orderSelectors.Peek()));
         }
@@ -45,6 +48,11 @@ namespace ChainFilters.Services
             if (nextOrderSelector is OrderSelectorByStatus)
             {
                 return OrderStatuses.Count;
+            }
+
+            if (nextOrderSelector is OrderSelectorByCity)
+            {
+                return Cities.Count;
             }
 
             if (nextOrderSelector is OrderSelectorByCustomer)
@@ -92,7 +100,7 @@ namespace ChainFilters.Services
             public override void SelectOrders(OrderFilter orderFilter, ref List<Order> orders)
             {
                 // get all orders by OrderDate
-                if (orderFilter.Customers.Count == 0 && orderFilter.OrderStatuses.Count == 0)
+                if (orderFilter.Customers.Count == 0 && orderFilter.OrderStatuses.Count == 0 && orderFilter.Cities.Count == 0)
                 {
                     orders.AddRange(orderFilter.GetDefaultOrders());
                 }
@@ -157,8 +165,65 @@ namespace ChainFilters.Services
                     ordersWithCustomers.AddRange(ords);
                 }
 
-                var orders = new List<Order>(ordersWithCustomers);
-                return orders;
+                return ordersWithCustomers;
+            }
+        }
+
+        protected class OrderSelectorByCity : OrderSelector
+        {
+            private readonly OrderSelector _nextOrderSelector;
+            public OrderSelectorByCity(OrderSelector nextOrderSelector) : base(nextOrderSelector)
+            {
+                _nextOrderSelector = nextOrderSelector;
+            }
+
+            public override void SelectOrders(OrderFilter orderFilter, ref List<Order> orders)
+            {
+                if (orders.Count == 0 && orderFilter.GetCountItems(_nextOrderSelector) == 0) //&& orderFilter.OrderStatuses.Count == 0
+                {
+                    // if orderFilter.Customers.Count == 0 get all orders by OrderDate
+                    if (orderFilter.Cities.Count == 0)
+                    {
+                        orders.AddRange(orderFilter.GetDefaultOrders());
+                    }
+                    else
+                    {
+                        orders = GetOrdersByCustomer(orderFilter, FactoryRepositoryFactory.GetFactory().OrderRepository.Orders);
+                    }
+                }
+                else
+                {
+                    // if Customers.Count == 0 skip select orders. Filter is disabled.
+                    if (orderFilter.Cities.Count > 0)
+                    {
+                        if (orders.Count == 0)
+                        {
+                            orders = GetOrdersByCustomer(orderFilter, FactoryRepositoryFactory.GetFactory().OrderRepository.Orders);
+                        }
+                        else
+                        {
+                            orders = GetOrdersByCustomer(orderFilter, orders);
+                        }
+                    }
+                }
+
+                base.SelectOrders(orderFilter, ref orders);
+            }
+
+            private static List<Order> GetOrdersByCustomer(OrderFilter orderFilter, IReadOnlyCollection<Order> source)
+            {
+                var ordersWithCustomers = new List<Order>();
+                foreach (var city in orderFilter.Cities)
+                {
+                    Thread.Sleep(100);
+
+                    var ords = from or in source
+                               where or.City.Name.Equals(city)
+                               select or;
+                    ordersWithCustomers.AddRange(ords);
+                }
+
+                return ordersWithCustomers;
             }
         }
 
@@ -210,7 +275,7 @@ namespace ChainFilters.Services
                     Thread.Sleep(100);
 
                     var ords = from or in orders
-                               where or.OrderStatus.Equals(orderStatuse)
+                               where or.OrderStatus.Status.Equals(orderStatuse)
                         select or;
                     ordersWithStatus.AddRange(ords);
                 }
@@ -242,6 +307,7 @@ namespace ChainFilters.Services
             try
             {
                 Customers.Clear();
+                Cities.Clear();
                 OrderStatuses.Clear();
             }
             catch (Exception)
