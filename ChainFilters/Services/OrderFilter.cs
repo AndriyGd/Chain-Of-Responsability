@@ -77,6 +77,9 @@ namespace ChainFilters.Services
             return orders;
         }
 
+        /// <summary>
+        /// Base class to the Chain Of Responsability pattern
+        /// </summary>
         protected abstract class OrderSelector
         {
             public OrderSelector NextOrderSelector { get;}
