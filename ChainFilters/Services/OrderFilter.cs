@@ -13,8 +13,7 @@ namespace ChainFilters.Services
     public class OrderFilter : IDisposable
     {
         #region privat fields
-
-        private Stack<OrderSelector> _orderSelectors;
+        private readonly Stack<OrderSelector> _orderSelectors;
         #endregion
 
         #region protected fields
@@ -121,7 +120,7 @@ namespace ChainFilters.Services
 
             public override void SelectOrders(OrderFilter orderFilter, ref List<Order> orders)
             {
-                if (orders.Count == 0 && orderFilter.GetCountItemsNexFilter(_nextOrderSelector) == 0) //&& orderFilter.OrderStatuses.Count == 0
+                if (orders.Count == 0 && orderFilter.GetCountItemsNexFilter(_nextOrderSelector) == 0)
                 {
                     // if orderFilter.Customers.Count == 0 get all orders by OrderDate
                     if (orderFilter.Customers.Count == 0)
@@ -179,7 +178,7 @@ namespace ChainFilters.Services
 
             public override void SelectOrders(OrderFilter orderFilter, ref List<Order> orders)
             {
-                if (orders.Count == 0 && orderFilter.GetCountItemsNexFilter(_nextOrderSelector) == 0) //&& orderFilter.OrderStatuses.Count == 0
+                if (orders.Count == 0 && orderFilter.GetCountItemsNexFilter(_nextOrderSelector) == 0)
                 {
                     // if orderFilter.Customers.Count == 0 get all orders by OrderDate
                     if (orderFilter.Cities.Count == 0)
@@ -237,7 +236,7 @@ namespace ChainFilters.Services
 
             public override void SelectOrders(OrderFilter orderFilter, ref List<Order> orders)
             {      
-                if (orders.Count == 0 && orderFilter.GetCountItemsNexFilter(_nextOrderSelector) == 0) // && orderFilter.Customers.Count == 0
+                if (orders.Count == 0 && orderFilter.GetCountItemsNexFilter(_nextOrderSelector) == 0)
                 {
                     // if orderFilter.OrderStatuses.Count == 0 get all orders by OrderDate
                     if (orderFilter.OrderStatuses.Count == 0)
