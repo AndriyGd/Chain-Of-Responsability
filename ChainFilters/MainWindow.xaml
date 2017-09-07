@@ -7,7 +7,7 @@
         xmlns:clr="clr-namespace:System;assembly=System"
         xmlns:xc="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="825" WindowStartupLocation="CenterScreen">
+        Title="Chain filter" Height="550" Width="825" WindowStartupLocation="CenterScreen">
     
     <Window.Resources>
         <Style TargetType="StackPanel">

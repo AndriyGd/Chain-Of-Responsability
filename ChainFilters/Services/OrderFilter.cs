@@ -41,7 +41,7 @@ namespace ChainFilters.Services
             _orderSelectors.Push(new OrederSelectorByOrderDate(_orderSelectors.Peek()));
         }
 
-        protected int GetCountItems(OrderSelector nextOrderSelector)
+        protected int GetCountItemsNexFilter(OrderSelector nextOrderSelector)
         {
             if (nextOrderSelector == null) return 0;
 
@@ -121,7 +121,7 @@ namespace ChainFilters.Services
 
             public override void SelectOrders(OrderFilter orderFilter, ref List<Order> orders)
             {
-                if (orders.Count == 0 && orderFilter.GetCountItems(_nextOrderSelector) == 0) //&& orderFilter.OrderStatuses.Count == 0
+                if (orders.Count == 0 && orderFilter.GetCountItemsNexFilter(_nextOrderSelector) == 0) //&& orderFilter.OrderStatuses.Count == 0
                 {
                     // if orderFilter.Customers.Count == 0 get all orders by OrderDate
                     if (orderFilter.Customers.Count == 0)
@@ -179,7 +179,7 @@ namespace ChainFilters.Services
 
             public override void SelectOrders(OrderFilter orderFilter, ref List<Order> orders)
             {
-                if (orders.Count == 0 && orderFilter.GetCountItems(_nextOrderSelector) == 0) //&& orderFilter.OrderStatuses.Count == 0
+                if (orders.Count == 0 && orderFilter.GetCountItemsNexFilter(_nextOrderSelector) == 0) //&& orderFilter.OrderStatuses.Count == 0
                 {
                     // if orderFilter.Customers.Count == 0 get all orders by OrderDate
                     if (orderFilter.Cities.Count == 0)
@@ -237,7 +237,7 @@ namespace ChainFilters.Services
 
             public override void SelectOrders(OrderFilter orderFilter, ref List<Order> orders)
             {      
-                if (orders.Count == 0 && orderFilter.GetCountItems(_nextOrderSelector) == 0) // && orderFilter.Customers.Count == 0
+                if (orders.Count == 0 && orderFilter.GetCountItemsNexFilter(_nextOrderSelector) == 0) // && orderFilter.Customers.Count == 0
                 {
                     // if orderFilter.OrderStatuses.Count == 0 get all orders by OrderDate
                     if (orderFilter.OrderStatuses.Count == 0)
