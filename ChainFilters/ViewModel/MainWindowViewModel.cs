@@ -16,7 +16,7 @@ namespace ChainFilters.ViewModel
 
     public class MainWindowViewModel
     {
-        private OrderFilter _orderFilter;
+        private readonly OrderFilter _orderFilter;
 
         public DateTime DateFrom { get; set; }
         public DateTime DateTo { get; set; }
